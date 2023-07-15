@@ -52,3 +52,5 @@ export PATH="/home/user/.local/bin:$PATH"
 echo '[12/12] Configure prompt...'
 
 export PS1="\[\033[01;32m\]\$\[\033[00m\] "
+
+source ~/.bashrc
