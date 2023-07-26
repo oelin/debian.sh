@@ -1,12 +1,8 @@
-# Zsh.
+# Bash.
 
 sudo apt install -y curl zsh
 
-sudo usermod --shell /bin/zsh $USER
-
-curl https://codeberg.org/kore/.zshrc/raw/branch/main/src/.zshrc > ~/.zshrc
-
-rm ~/.bash*
+curl https://codeberg.org/kore/.bashrc/raw/branch/main/src/.bashrc > ~/.bashrc
 
 sudo curl -Lo /usr/bin/theme.sh 'https://git.io/JM70M' && sudo chmod +x /usr/bin/theme.sh
 
@@ -30,4 +26,4 @@ python3 -m venv ~/.venv/venv
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
 
-source ~/.zshrc
+. ~/.bashrc
