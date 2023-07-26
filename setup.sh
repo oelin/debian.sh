@@ -1,56 +1,33 @@
-echo '[01/12] Install cURL...'
+# Zsh.
 
-sudo apt install -y curl
+sudo apt install -y curl zsh
 
-echo '[02/12] Install Git...'
+sudo usermod --shell /bin/zsh $USER
 
-sudo apt install -y git
+curl https://codeberg.org/kore/.zshrc/raw/branch/main/src/.zshrc > ~/.zshrc
 
-echo '[03/12] Install Python, pip and venv...'
-
-sudo apt install -y python3 python3-pip python3-venv
-
-echo '[04/12] Configure venv...'
-
-python3 -m venv ~/venv
-
-source ~/venv/bin/activate
-
-echo 'source ~/venv/bin/activate' >> ~/.bashrc
-
-echo '[05/12] Install Poetry...'
-
-curl -sSL https://install.python-poetry.org | python3 -
-
-echo '[06/12] Install theme.sh...'
+rm ~/.bash*
 
 sudo curl -Lo /usr/bin/theme.sh 'https://git.io/JM70M' && sudo chmod +x /usr/bin/theme.sh
 
-echo '[07/12] Configure theme.sh...'
+# Vim.
 
-theme.sh spaceduck
+sudo apt install -y vim
 
-echo 'theme.sh `tail -1 ~/.theme_history`' >> ~/.bashrc
+curl https://codeberg.org/kore/.vimrc/raw/branch/main/src/.vimrc > ~/.vimrc
 
-echo '[08/12] Install nvm...'
+# Python.
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+sudo apt install -y python3 python3-full python3-pip python3-venv
 
-echo '[09/12] Configure nvm...'
+sudo curl -sL install.python-poetry.org | python3 -
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+mkdir ~/.venv
 
-echo '[10/12] Install Node and npm...'
+python3 -m venv ~/.venv/venv
 
-nvm install node
+# Node.
 
-echo '[11/12] Configure path...'
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
 
-export PATH="/home/user/.local/bin:$PATH"
-
-echo '[12/12] Configure prompt...'
-
-export PS1="\[\033[01;32m\]\$\[\033[00m\] "
-
-source ~/.bashrc
+source ~/.zshrc
